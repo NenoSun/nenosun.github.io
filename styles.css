@@ -1,13 +1,11 @@
-@import url('https://fonts.googleapis.com/css2?family=Nunito:ital,wght@0,200..1000;1,200..1000&display=swap');
-
 html{
     background-color: #F6F6F6;
     overflow-y: scroll;
 }
 
 body{
-    font-family: "Nunito", Arial, Helvetica, sans-serif;
-    font-size: 1.5rem;
+    font-family: Calibri, 'Gill Sans', 'Gill Sans MT', 'Trebuchet MS', sans-serif;
+    font-size: 1.35rem;
 }
 
 .profile-pic{
@@ -20,7 +18,7 @@ body{
 
 
 .frame{
-    width: 800px;
+    width: 950px;
     margin: auto;
     margin-top: 80px;
     padding-bottom: 100px;
