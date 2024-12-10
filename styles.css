@@ -1,10 +1,12 @@
+@import url('https://fonts.googleapis.com/css2?family=Nunito+Sans:ital,opsz,wght@0,6..12,200..1000;1,6..12,200..1000&display=swap');
+
 html{
     background-color: #F6F6F6;
     overflow-y: scroll;
 }
 
 body{
-    font-family: Calibri, 'Gill Sans', 'Gill Sans MT', 'Trebuchet MS', sans-serif;
+    font-family: 'Nunito Sans', sans-serif;
     font-size: 1.35rem;
 }
 
@@ -15,7 +17,6 @@ body{
     object-fit: cover;
     border: 1px solid #000;
 }
-
 
 .frame{
     width: 950px;
@@ -100,4 +101,45 @@ body{
     margin-bottom: -15px;
     margin-top: 35px;
     padding-bottom: 0px;
+}
+
+@media only screen and (max-width: 600px){
+    .html{
+        padding-left: 30px;
+        padding-right: 30px;
+    }
+
+    .name{
+        font-size: 6vw;
+    }
+
+    .profile-pic{
+        margin-top: 30px;
+        width: 55vw;
+        height: 55vw;
+    }
+
+    .icon{
+        font-size: 6.5vw;
+        margin-bottom: 5vw;
+    }
+
+    .clickable{
+        font-size: 4.5vw;
+    }
+
+    .frame{
+        width: 90vw;
+        margin: auto;
+    }
+
+    .page{
+        line-height: 1.45;
+        font-size: 4.5vw;
+    }
+
+    .cat-pic{
+        width: 35vw;
+        height: 35vw;
+    }
 }
