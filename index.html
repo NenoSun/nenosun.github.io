@@ -13,11 +13,17 @@
             <img alt="Profile Picture" src="./imgs/portait-stylized.jpg" class="profile-pic"></img>
             <p class="name">Ningyuan Sun</p>
             <div class="social-media-icons">
+                <a href="mailto:ningyuan.sun.2022@outlook.com" target="_blank">
+                    <i class="fa-solid fa-envelope icon" style="font-size: 25px;"></i>
+                </a>
+                <a id="weixin-logo" style="cursor: pointer;">
+                    <i class="fa-brands fa-weixin icon" style="font-size: 25px;"></i>
+                </a>
+                <a href="https://space.bilibili.com/3546597105338963" target="_blank">
+                    <i class="fa-brands fa-bilibili icon"></i>
+                </a>
                 <a href="https://www.linkedin.com/in/nenosun" target="_blank">
                     <i class="fa-brands fa-linkedin icon"></i>
-                </a>
-                <a href="https://orcid.org/0000-0001-7066-6009" target="_blank">
-                    <i class="fa-brands fa-orcid icon"></i>
                 </a>
             </div>
             <div class="nav-bar">
@@ -40,16 +46,43 @@
             <div style="display: flex;justify-content: center; column-gap: 20px;">
                 <div style="display: flex; flex-direction: column; align-items: center;">
                     <img src="./imgs/poppi.jpeg" alt="cat2" class="cat-pic">
-                    <p >Poppi</p>
+                    <p>Poppi</p>
                 </div>
                 <div style="display: flex; flex-direction: column; align-items: center;">
                     <img src="./imgs/dami.jpg" alt="cat2" class="cat-pic">
-                    <p >Dami (deceased)</p>
+                    <p>Dami (deceased)</p>
                 </div>
             </div>
         </div>
-
-
     </div>
+
+    <!-- The Modal -->
+    <div id="weixin-modal" class="modal">
+        <div class="modal-content">
+            <span class="close" id="close-modal">&times;</span>
+            <p>微信号: <strong>nenosun</strong></p>
+        </div>
+    </div>
+
+    <script>
+        // JavaScript to open and close the modal
+        const modal = document.getElementById('weixin-modal');
+        const openModal = document.getElementById('weixin-logo');
+        const closeModal = document.getElementById('close-modal');
+
+        openModal.onclick = () => {
+            modal.style.display = 'block';
+        };
+
+        closeModal.onclick = () => {
+            modal.style.display = 'none';
+        };
+
+        window.onclick = (event) => {
+            if (event.target === modal) {
+                modal.style.display = 'none';
+            }
+        };
+    </script>
 </body>
 </html>
