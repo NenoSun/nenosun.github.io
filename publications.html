@@ -70,6 +70,26 @@
                 <p>微信号: <strong>nenosun</strong></p>
             </div>
         </div>
+
+        <script>
+            const modal = document.getElementById('weixin-modal');
+            const openModal = document.getElementById('weixin-logo');
+            const closeModal = document.getElementById('close-modal');
+    
+            openModal.onclick = () => {
+                modal.style.display = 'block';
+            };
+    
+            closeModal.onclick = () => {
+                modal.style.display = 'none';
+            };
+    
+            window.onclick = (event) => {
+                if (event.target === modal) {
+                    modal.style.display = 'none';
+                }
+            };
+        </script>
 </body>
 
 </html>
