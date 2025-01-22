@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Ningyuan's Webpage</title>
+    <link rel="stylesheet" href="/styles.css?v=1.1">
+    <script src="https://kit.fontawesome.com/6d09fc043c.js" crossorigin="anonymous"></script>
+    <script src="https://code.jquery.com/jquery-1.10.2.js"></script>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="icon" type="image/x-icon" href="/favicon.png">
+    <style>
+        /* Hide the entire page until nav.html is loaded */
+        body {
+            visibility: hidden;
+        }
+    </style>
+    <script>
+        $(function () {
+            $("#nav-placeholder").load("nav.html", function () {
+                // Make the page visible once nav.html has loaded
+                document.body.style.visibility = "visible";
+            });
+        });
+    </script>
+</head>
+
+<body>
+    <div class="max-w-[700px] mx-auto px-4 pb-20" >
+        <!--Navigation bar-->
+        <div id="nav-placeholder"></div>
+        <div class="text-base md:text-lg text-justify hyphens-auto">
+            <section class="my-7">
+                <p class="font-bold">ChronoPilot - Modulating Time Perception <a
+                        href="https://www.chronopilot.eu/"><i class="fa-solid fa-link clickable"></i></a></p>
+                <div>
+                    <p>Funded by EU Horizon 2020, the ChronoPilot project explores an interesting topic about time
+                        perception in VR/AR and how we can modulate it for good use. In collaboration with researchers
+                        from several other universities, we develop various prototypes serving as the platform for
+                        scientific investigation on time perception in VR/AR.</p>
+                </div>
+            </section>
+
+            <section class="my-7">
+                <p class="font-bold">DELICIOS - Delegating Critical Tasks to Embodied AI <a
+                        href="https://coast.uni.lu/delicios/"><i class="fa-solid fa-link clickable"></i></a></p>
+                <div>
+                    <p>DELICIOS was a 4-year international collaborative project to which my PhD research contributes
+                        and belongs. My work involved a series of experiments to reveal the rationale and psychology
+                        behind people's decisions on delegating critical tasks to embodied AI. The results were further
+                        developed into a theory offering insights in human-AI trust and collaboration.</p>
+                </div>
+            </section>
+
+            <section class="my-7">
+                <p class="font-bold">Realistic Fluid Simulation (Master Thesis) <a
+                        href="https://drive.google.com/file/d/1sklGEac0IYxZh4J3tEHVLKrQS5GY_AcS/view"><i
+                            class="fa-solid fa-link clickable"></i></a></p>
+                <div>
+                    <p>Simulate fluid dynamics in a visually and physically realistic manner. Written in C++, the
+                        project implemented the DFSPH algorithm with CUDA-based parallel for accelerating the
+                        computational process. The simulation results were rendered using OpenGL and exported to Houdini
+                        for better visuals.</p>
+                </div>
+            </section>
+
+            <section class="my-7">
+                <p class="font-bold">Panorama Generation From Seperated Images (Bachelor Thesis) <a
+                        href="https://drive.google.com/file/d/12E4HHuGrsd6BG6lHuie00FalxkLHWgAQ/view"><i
+                            class="fa-solid fa-link clickable"></i></a></p>
+                <div>
+                    <p>Nominated as the best Bachelor project of the year. An application was developed that stitches
+                        individual images into a spherical panorama for VR. Built upon OpenCV, the application extracts
+                        SIFT feature points to match and and properly register the different images onto a sphere.
+                        Further measures were taken to balance the color and exposure of the panorama.</p>
+                </div>
+            </section>
+        </div>
+
+</body>
+
+</html>
