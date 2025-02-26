@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Ningyuan's Webpage</title>
+    <link rel="stylesheet" href="/styles.css?v=1.1">
+    <script src="https://kit.fontawesome.com/6d09fc043c.js" crossorigin="anonymous"></script>
+    <script src="https://code.jquery.com/jquery-1.10.2.js"></script>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="icon" type="image/x-icon" href="/favicon.png">
+    <style>
+        /* Hide the entire page until nav.html is loaded */
+        body {
+            visibility: hidden;
+        }
+    </style>
+    <script>
+        $(function () {
+            $("#nav-placeholder").load("nav.html", function () {
+                // Make the page visible once nav.html has loaded
+                document.body.style.visibility = "visible";
+            });
+        });
+    </script>
+</head>
+
+<body>
+    <div class="max-w-[700px] mx-auto px-4 pb-20" >
+        <!--Navigation bar-->
+        <div id="nav-placeholder"></div>
+        <div class="text-base md:text-lg text-justify hyphens-auto">
+            <section class="my-7">
+                <p class="font-bold">ChronoPilot - 改变时间感知 <a
+                        href="https://www.chronopilot.eu/"><i class="fa-solid fa-link clickable"></i></a></p>
+                <div>
+                    <p>由欧盟“地平线2020”（EU Horizon 2020）项目资助。ChronoPilot 项目主要探索时间感知背后的心理/生理机制，并利用各种技术（例如虚拟现实，机器人等）去改变人对于时间的感知。本项目由五所大学共同完成，涵盖了计算机科学，心理学，机器人等多个学科。</p>
+                </div>
+            </section>
+
+            <section class="my-7">
+                <p class="font-bold">DELICIOS - 人工智能交互 <a
+                        href="https://coast.uni.lu/delicios/"><i class="fa-solid fa-link clickable"></i></a></p>
+                <div>
+                    <p>DELICIOS 是一个为期四年的国际合作项目。我的博士课题隶属于这个项目。期间我进行了一系列实验，旨在揭示用户为什么，什么时候会使用AI，并探寻其背后的决策逻辑与心理过程。所有的实验结果最终总结成了一套理论，为未来的人机交互设计提供参考与借鉴。</p>
+                </div>
+            </section>
+
+            <section class="my-7">
+                <p class="font-bold">流体模拟 (硕士毕设) <a
+                        href="https://drive.google.com/file/d/1sklGEac0IYxZh4J3tEHVLKrQS5GY_AcS/view"><i
+                            class="fa-solid fa-link clickable"></i></a></p>
+                <div>
+                    <p>编写了一个流体模拟器。该项目使用 C++ 编写，利用CUDA并行加速计算，实现了 DFSPH（密度流体动力学平滑粒子算法）。模拟结果通过 OpenGL 进行基础渲染，后导入到 Houdini 以获得更精美的视觉效果。</p>
+                </div>
+            </section>
+
+            <section class="my-7">
+                <p class="font-bold">全景图拼接 (本科毕设) <a
+                        href="https://drive.google.com/file/d/12E4HHuGrsd6BG6lHuie00FalxkLHWgAQ/view"><i
+                            class="fa-solid fa-link clickable"></i></a></p>
+                <div>
+                    <p>开发了一款计算机视觉应用程序，可以将多张图像拼接成球形全景图。该应用基于 OpenCV，利用 SIFT 特征点将不同图像拼接到球面上。之后进行一系列调整来平衡全景图的颜色、曝光等，以提升拼接效果。</p>
+                </div>
+            </section>
+        </div>
+
+</body>
+
+</html>
