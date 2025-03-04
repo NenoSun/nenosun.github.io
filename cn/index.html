@@ -1,0 +1,224 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Ningyuan's Webpage</title>
+    <link rel="stylesheet" href="/styles.css?v=1.1">
+    <script src="https://kit.fontawesome.com/6d09fc043c.js" crossorigin="anonymous"></script>
+    <script src="https://code.jquery.com/jquery-1.10.2.js"></script>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="icon" type="image/x-icon" href="/favicon.png">
+    <style>
+        /* Hide the entire page until nav.html is loaded */
+        body {
+            visibility: hidden;
+        }
+    </style>
+    <script>
+        $(function () {
+            $("#nav-placeholder").load("nav.html", function () {
+                // Make the page visible once nav.html has loaded
+                document.body.style.visibility = "visible";
+            });
+        });
+    </script>
+</head>
+
+<body>
+    <div class="max-w-[700px] mx-auto px-4 pb-20">
+        <!--Navigation bar-->
+        <div id="nav-placeholder"></div>
+        <div class="text-base text-justify hyphens-auto md:text-lg">
+            <section class="border-2 border-gray-300 rounded-md shadow-lg p-4 mb-4 bg-slate-100">
+                <div class="flex items-center gap-4 mb-4">
+                    <div class="flex-1">
+                        <!-- <h2 class="font-bold text-lg mb-2">咨询与指导服务</h2> -->
+                        <p class="mb-2">
+                            Hi，我提供留学申请和学术论文相关的咨询与指导服务。简单或一次性问题，直接邮件或者微信留言即可。如需1v1指导/服务，欢迎加微信详谈。
+                        </p>
+                    </div>
+                </div>
+                <div class="flex items-center justify-center border-t pt-3">
+                    <div class="flex items-center gap-2">
+                        <div class="flex items-center">已为</div>
+                        <div class="text-blue-500 font-bold text-xl flex items-center">20</div>
+                        <div class="flex items-center">位同学服务</div>
+                    </div>
+                </div>
+                <div class="flex justify-center mt-1 text-base">(数据无水分)</div>
+            </section>
+        </div>
+
+        <div class="text-sm md:text-base">
+            <div class="flex gap-2 md:gap-4">
+                <!-- left col -->
+                <div class="w-1/2 space-y-2 md:space-y-4">
+
+                    <section class="border border-gray-300 rounded-md shadow-md p-4">
+                        <div class="font-bold md:text-lg pb-3">
+                            <a target="_blank" href="https://www.bilibili.com/video/BV1K99BYfE4i">
+                            发Nature也是一件可悲的事情 ｜ 论文出版的阴暗面
+                        </a>
+                        </div>
+        
+                        <div class="flex gap-1">
+                            <div>
+                                <a href="https://www.bilibili.com/video/BV1K99BYfE4i" target="_blank"><img src="../imgs/unethical-publication.png" class="mx-auto w-full mb-1 rounded-md"></a>
+                            </div>
+                        </div>
+        
+                        <div class="flex mt-3 gap-4">
+                            <div>
+                                希望以后环境对科研人员好一点。
+                            </div>
+                        </div>
+                    </section>
+
+                    <section class="border border-gray-300 rounded-md shadow-md p-4">
+                        <div class="font-bold md:text-lg pb-3">
+                            <a target="_blank" href="https://www.bilibili.com/video/BV1acA8evEpt">
+                            我读论文时的野路子｜个人经验分享
+                        </a>
+                        </div>
+        
+                        <div class="flex gap-1">
+                            <div>
+                                <a href="https://www.bilibili.com/video/BV1acA8evEpt" target="_blank"><img src="../imgs/paper-reading-cover.png" class="mx-auto w-full mb-1 rounded-md"></a>
+                            </div>
+                        </div>
+        
+                        <div class="flex mt-3 gap-4">
+                            <div>
+                                我对读论文这件事情的一点心得。
+                            </div>
+                        </div>
+                    </section>
+
+                    <section class="border border-gray-300 rounded-md shadow-md p-4">
+                        <div class="font-bold md:text-lg pb-3">
+                            <a target="_blank" href="https://www.bilibili.com/video/BV1A5KWe5EgK">
+                            作为博士，我是如何高效学习英语的
+                        </a>
+                        </div>
+        
+                        <div class="flex gap-1">
+                            <div>
+                                <a href="https://www.bilibili.com/video/BV1A5KWe5EgK" target="_blank"><img src="../imgs/english-learning.png" class="mx-auto w-full mb-1 rounded-md"></a>
+                            </div>
+                        </div>
+        
+                        <div class="flex mt-3 gap-4">
+                            <div>
+                                五个技巧帮你快速全面地提高英语水平。
+                            </div>
+                        </div>
+                    </section>
+
+                    <section class="border border-gray-300 rounded-md shadow-md p-4">
+                        <div class="font-bold md:text-lg pb-3">
+                            <a target="_blank" href="../imgs/cv-101.png">
+                            硕博留学CV攻略（图文版）
+                        </a>
+                        </div>
+        
+                        <div class="flex gap-1">
+                            <div>
+                                <a href="../imgs/cv-101.png" target="_blank"><img src="../imgs/cv-thumbnail.png" class="mx-auto w-full mb-1 rounded-md"></a>
+                            </div>
+                        </div>
+        
+                        <div class="flex mt-3 gap-4">
+                            <div>
+                                一图帮你总结硕博留学CV的书写要点与雷区。更详细的解读与例子可以去看视频版（<a href="../imgs/cv-101.png" target="_blank"><i class="fa-solid fa-link clickable"></i></a>）。
+                            </div>
+                        </div>
+                    </section>
+                </div>
+
+                <!-- right col -->
+                <div class="w-1/2 space-y-2 md:space-y-4">
+                    <section class="border border-gray-300 rounded-md shadow-md p-4">
+
+                        <section class="border border-gray-300 rounded-md shadow-md p-4">
+                            <div class="font-bold md:text-lg pb-3">
+                                <a target="_blank" href="https://www.bilibili.com/video/BV1iQPvefEUT/?vd_source=2301cf1946d58db85fb50b012a42828c">
+                                献给所有的留学生
+                            </a>
+                            </div>
+            
+                            <div class="flex gap-1">
+                                <div>
+                                    <a href="https://www.bilibili.com/video/BV1iQPvefEUT/?vd_source=2301cf1946d58db85fb50b012a42828c" target="_blank"><img src="../imgs/hobo-cover.png" class="mx-auto w-full mb-1 rounded-md"></a>
+                                </div>
+                            </div>
+            
+                            <div class="flex mt-3 gap-4">
+                                <div>
+                                    乐队总谱点<a target="_blank" href="https://nenosun.github.io/files/hobo-scores.zip" class="text-blue-500 hover:underline">这里</a>下载。
+                                </div>
+                            </div>
+                        </section>
+
+                        <div class="font-bold text-sm md:text-lg pb-3">
+                            <a target="_blank" href="https://www.bilibili.com/video/BV13z6QYzEeb/?vd_source=2301cf1946d58db85fb50b012a42828c#reply113749675480489">
+                            出国读博指南101 ｜ 如何寻找理想的博士项目
+                        </a>
+                        </div>
+        
+                        <div class="flex gap-1">
+                            <div>
+                                <a target="_blank" href="https://www.bilibili.com/video/BV13z6QYzEeb/?vd_source=2301cf1946d58db85fb50b012a42828c#reply113749675480489"><img src="../imgs/phd-programs-cover-compressed.jpg" class="mx-auto w-full mb-1 rounded-md"></a>
+                            </div>
+                        </div>
+        
+                        <div class="flex mt-3 gap-4">
+                            <div>
+                                两种方法，帮助大家找到适合自己的博士项目！
+                            </div>
+                        </div>
+                    </section>
+
+                    <section class="border border-gray-300 rounded-md shadow-md p-4">
+                        <div class="font-bold md:text-lg pb-3">
+                            <a target="_blank" href="https://www.bilibili.com/video/BV1a5cWeyEa6/?spm_id_from=333.1387.homepage.video_card.click">
+                            Become Human | 人机交互发展史
+                        </a>
+                        </div>
+        
+                        <div class="flex gap-1">
+                            <div>
+                                <a target="_blank" href="https://www.bilibili.com/video/BV1a5cWeyEa6/?spm_id_from=333.1387.homepage.video_card.click"><img src="../imgs/hci-evolution-cover.png" class="w-full rounded-md"></a>
+                            </div>
+                        </div>
+        
+                        <div class="flex mt-3 gap-4">
+                            <div>
+                                呕心沥血，费老大劲的视频，咋就没人看呢。在这里重新发一下！
+                            </div>
+                        </div>
+                    </section>
+
+                    <section class="border border-gray-300 rounded-md shadow-md p-4">
+                        <div class="font-bold md:text-lg pb-3">
+                            博士项目搜寻网站
+                        </div>
+        
+                        <div class="flex flex-col gap-1">
+                            <a target="_blank" href="https://www.findaphd.com/" class="text-blue-500 hover:underline truncate">https://www.findaphd.com/</a>
+                            <a target="_blank" href="https://www.phdportal.com/" class="text-blue-500 hover:underline truncate">https://www.phdportal.com/</a>
+                            <a target="_blank" href="https://www.researchgate.net/jobs" class="text-blue-500 hover:underline truncate">https://www.researchgate.net/jobs</a>
+                            <a target="_blank" href="https://academicpositions.com/find-jobs/" class="text-blue-500 hover:underline truncate">https://academicpositions.com/find-jobs/</a>
+                            <a target="_blank" href="https://euraxess.ec.europa.eu" class="text-blue-500 hover:underline truncate">https://euraxess.ec.europa.eu</a>
+                            <a target="_blank" href="https://scholarshipdb.net/" class="text-blue-500 hover:underline truncate">https://scholarshipdb.net/</a>
+                          </div>
+                    </section>
+                </div>
+
+            </div>
+        </div>
+
+</body>
+
+</html>

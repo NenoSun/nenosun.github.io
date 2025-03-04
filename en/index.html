@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="/styles.css">
+    <script src="https://kit.fontawesome.com/6d09fc043c.js" crossorigin="anonymous"></script>
+    <title>Ningyuan's Webpage</title>
+    <script src="https://code.jquery.com/jquery-1.10.2.js"></script>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="icon" type="image/x-icon" href="/favicon.png">
+    <style>
+        body {
+            visibility: hidden;
+        }
+    </style>
+    <script>
+        $(function () {
+            $("#nav-placeholder").load("nav.html", function () {
+                document.body.style.visibility = "visible";
+            });
+        });
+    </script>
+</head>
+
+<body>
+    <div class="max-w-[700px] mx-auto px-4 pb-20" >
+        <!--Navigation bar-->
+        <div id="nav-placeholder"></div>
+        <div class="text-base md:text-lg md:text-justify md:hyphens-auto">
+            <p class="my-2">
+                Hi, there. I was a post-doctoral researcher at the University of Luxembourg. My
+                research aims to understand the rationale behind people's decisions on delegating critical tasks to
+                embodied AI, especially when combined with immersive media technologies like VR and AR.</p>
+
+                <p class="my-2">I obtained my Ph.D. degree at the University of Luxembourg in 2023, before which I had a Master degree in Computer Science at the University of
+                Birmingham (U.K.) and worked as a software engineer at the Inspur Group (China).</p>
+
+                <p class="my-2">I am a cat lover. Below are my cats.</p>
+            </p>
+
+            <div class="flex justify-center gap-10 mt-10">
+                <div class="flex flex-col items-center">
+                    <img src="/imgs/poppi.jpeg" alt="cat2" class="cat-pic w-[150px] h-[150px]">
+                    <p>Poppi</p>
+                </div>
+                <div class="flex flex-col items-center">
+                    <img src="/imgs/dami.jpg" alt="cat2" class="cat-pic w-[150px] h-[150px]">
+                    <p>Dami (deceased)</p>
+                </div>
+            </div>
+        </div>
+    </div>
+</body>
+
+</html>
