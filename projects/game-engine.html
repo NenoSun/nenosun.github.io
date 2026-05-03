@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Game Engine From Scratch — Ningyuan Sun</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&family=DM+Sans:ital,opsz,wght@0,9..40,300;0,9..40,400;0,9..40,500;1,9..40,300&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="/style.css" />
+  <style>
+    /* Make figures with lightbox show a zoom cursor */
+    figure.zoomable { cursor: zoom-in; }
+  </style>
+</head>
+<body>
+
+  <!-- LIGHTBOX -->
+  <div class="lightbox" id="lightbox" onclick="closeLightbox()">
+    <button class="lightbox-close" onclick="closeLightbox()">✕</button>
+    <img id="lightbox-img" src="" alt="" />
+    <div class="lightbox-caption" id="lightbox-caption"></div>
+  </div>
+
+  <nav>
+    <a href="/index.html" class="nav-name">Ningyuan Sun</a>
+    <a href="/index.html" class="nav-back">← Back to Home</a>
+  </nav>
+
+  <main>
+    <div class="container fade-in">
+
+      <a href="/index.html#projects" class="back-link">← Back to Projects</a>
+
+      <div class="project-tags">
+        <span class="tag">Game Engine</span>
+        <span class="tag">C++</span>
+      </div>
+
+      <h1>Game Engine From Scratch</h1>
+
+      <p class="project-intro">I've been mostly using Unity, and have some experience in Godot and the Unreal Engine. As good engines as they are, there are still some features not well supported natively, especially when it comes to AR systems, where video streams need to be imported as texture resources. Also, these engines target mainly desktop or mobile devices with a decent GPU, but are not optimized for lower-end GPUs like those on Raspberry Pi. To make a game run smoothly on embedded systems, one needs to strip down unused modules and keep only the cores. Apart from performance-related issues, these engines are also tightly coupled with existing rendering frameworks as in Xorg, Wayland, or OpenXR. As a consequence, it takes a substantial amount of effort to modify the engine before it can be connected to a custom-made compositor.</p>
+
+      <p class="project-intro">To cope with these limitations, I decided to write a small game engine from scratch. The engine in its current state is far from perfect and has many quirks and bugs, but just sufficiently usable for my own use case.</p>
+
+      <figure style="margin: 2rem 0rem 2rem 0rem" class="zoomable" onclick="openLightbox(this)">
+        <img class="full-img" src="/public/imgs/game-engine-thumb.png" alt="Game engine editor" style="margin: 0;" />
+        <figcaption class="media-caption">A screenshot of the engine's editor following the Unity style.</figcaption>
+      </figure>
+
+    </div>
+  </main>
+
+  <footer>
+    <span class="footer-copy">© 2026 Ningyuan Sun.</span>
+    <a href="/index.html" style="font-size: 0.82rem; color: var(--ink-faint); text-decoration: none;">← Back to Home</a>
+  </footer>
+
+  <script>
+    function openLightbox(figure) {
+      const img = figure.querySelector('img');
+      const caption = figure.querySelector('figcaption');
+      document.getElementById('lightbox-img').src = img.src;
+      document.getElementById('lightbox-img').alt = img.alt;
+      document.getElementById('lightbox-caption').textContent = caption ? caption.textContent : '';
+      document.getElementById('lightbox').classList.add('open');
+      document.body.style.overflow = 'hidden';
+    }
+
+    function closeLightbox() {
+      document.getElementById('lightbox').classList.remove('open');
+      document.body.style.overflow = '';
+    }
+
+    document.addEventListener('keydown', e => { if (e.key === 'Escape') closeLightbox(); });
+  </script>
+
+</body>
+</html>

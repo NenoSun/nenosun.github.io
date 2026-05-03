@@ -1,0 +1,131 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Realistic Fluid Simulation — Ningyuan Sun</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&family=DM+Sans:ital,opsz,wght@0,9..40,300;0,9..40,400;0,9..40,500;1,9..40,300&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="/style.css" />
+</head>
+<body>
+
+  <!-- LIGHTBOX -->
+  <div class="lightbox" id="lightbox" onclick="closeLightbox()">
+    <button class="lightbox-close" onclick="closeLightbox()">✕</button>
+    <img id="lightbox-img" src="" alt="" />
+    <div class="lightbox-caption" id="lightbox-caption"></div>
+  </div>
+
+  <nav>
+    <a href="/index.html" class="nav-name">Ningyuan Sun</a>
+    <a href="/index.html" class="nav-back">← Back to Home</a>
+  </nav>
+
+  <main>
+    <div class="container fade-in">
+
+      <a href="/index.html#projects" class="back-link">← Back to Projects</a>
+
+      <div class="project-tags">
+        <span class="tag">Computer Graphics</span>
+        <span class="tag">Physics Simulation</span>
+      </div>
+
+      <h1>Realistic Fluid Simulation</h1>
+
+      <p class="project-intro">While I was doing my M.Sc. in Computer Science, I had a great interest in game engines and computer graphics. So I decided to work on something relevant as my graduation project. Eventually, I landed on fluid simulation, which is a fun project but also quite challenging.</p>
+
+      <div id="video-opengl" style="margin-bottom: 1.3rem;"></div>
+
+      <div class="project-intro">
+        <p>Written in C++, the program is essentially a particle system that tries to regulate particles' movements using the Navier-Stokes equation. There are various approaches to achieve it, among which the <a href="https://dl.acm.org/doi/10.1145/2786784.2786796" target="_blank" rel="noopener">Divergence-Free Smoothed Particle Hydrodynamics (DFSPH)</a> is used in this project. Particles are then rendered via a simple OpenGL wrapper, as in the video above.</p>
+      </div>
+
+      <div class="project-intro">
+        <p>Using Houdini instead of OpenGL gives a much more realistic rendering by default, as in the picture below.</p>
+      </div>
+
+      <figure class="zoomable" onclick="openLightbox(this)">
+        <img class="full-img" src="/public/imgs/fluid-houdini.jpg" alt="Houdini render" style="margin: 0;" />
+        <figcaption class="media-caption" style="margin-top: 0.1rem;">Rendered in Houdini — much more realistic lighting compared to the OpenGL version.</figcaption>
+      </figure>
+
+      <div class="project-intro" style="margin-top: 2rem;">
+        <p>The fluid can also interact with rigidbody objects.</p>
+      </div>
+
+      <div id="video-rigidbody"></div>
+
+    </div>
+  </main>
+
+  <footer>
+    <span class="footer-copy">© 2026 Ningyuan Sun.</span>
+    <a href="/index.html" style="font-size: 0.82rem; color: var(--ink-faint); text-decoration: none;">← Back to Home</a>
+  </footer>
+
+  <script>
+    function youtubeEmbed(id, youtubeId, caption) {
+      const el = document.getElementById(id);
+      if (!el) return;
+      el.className = 'video-section';
+
+      const facade = document.createElement('div');
+      facade.className = 'video-facade';
+
+      const thumb = document.createElement('img');
+      thumb.src = `https://img.youtube.com/vi/${youtubeId}/maxresdefault.jpg`;
+      thumb.alt = caption;
+
+      const playBtn = document.createElement('div');
+      playBtn.className = 'play-btn';
+      playBtn.innerHTML = `
+        <svg viewBox="0 0 68 68" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <circle cx="34" cy="34" r="34" fill="rgba(0,0,0,0.55)"/>
+          <polygon points="27,20 54,34 27,48" fill="#fff"/>
+        </svg>`;
+
+      const captionEl = document.createElement('p');
+      captionEl.className = 'media-caption';
+      captionEl.textContent = caption;
+
+      facade.appendChild(thumb);
+      facade.appendChild(playBtn);
+      facade.addEventListener('click', function () {
+        const embed = document.createElement('div');
+        embed.className = 'video-embed';
+        embed.innerHTML = `<iframe src="https://www.youtube.com/embed/${youtubeId}?autoplay=1&rel=0&modestbranding=1" allow="autoplay; fullscreen" allowfullscreen></iframe>`;
+        facade.parentNode.replaceChild(embed, facade);
+      });
+
+      el.appendChild(facade);
+      el.appendChild(captionEl);
+    }
+
+    function openLightbox(figure) {
+      const img = figure.querySelector('img');
+      const caption = figure.querySelector('figcaption');
+      document.getElementById('lightbox-img').src = img.src;
+      document.getElementById('lightbox-img').alt = img.alt;
+      document.getElementById('lightbox-caption').textContent = caption ? caption.textContent : '';
+      document.getElementById('lightbox').classList.add('open');
+      document.body.style.overflow = 'hidden';
+    }
+
+    function closeLightbox() {
+      document.getElementById('lightbox').classList.remove('open');
+      document.body.style.overflow = '';
+    }
+
+    document.addEventListener('keydown', e => { if (e.key === 'Escape') closeLightbox(); });
+
+    // ── Register videos ────────────────────────────────────────
+    youtubeEmbed('video-opengl',    'UKHK2QYGBkI', 'Fluid simulation with a simple OpenGL renderer.');
+    youtubeEmbed('video-rigidbody', 'azWwhbZol6k',  'Fluid interacts with rigidbody dragons.');
+    // ───────────────────────────────────────────────────────────
+  </script>
+
+</body>
+</html>

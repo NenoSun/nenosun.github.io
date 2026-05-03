@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>DELICIOS — Ningyuan Sun</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&family=DM+Sans:ital,opsz,wght@0,9..40,300;0,9..40,400;0,9..40,500;1,9..40,300&display=swap" rel="stylesheet" />
+  <link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&family=DM+Sans:ital,opsz,wght@0,9..40,300;0,9..40,400;0,9..40,500;1,9..40,300&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="/style.css" />
+</head>
+<body>
+
+  <nav>
+    <a href="/index.html" class="nav-name">Ningyuan Sun</a>
+    <a href="/index.html" class="nav-back">← Back to Home</a>
+  </nav>
+
+  <!-- LIGHTBOX -->
+  <div class="lightbox" id="lightbox" onclick="closeLightbox()">
+    <button class="lightbox-close" onclick="closeLightbox()">✕</button>
+    <img id="lightbox-img" src="" alt="" />
+    <div class="lightbox-caption" id="lightbox-caption"></div>
+  </div>
+
+  <main>
+    <div class="container fade-in">
+
+      <a href="/index.html#projects" class="back-link">← Back to Projects</a>
+
+      <div class="project-tags">
+          <span class="tag">Perception Modulation</span>
+          <span class="tag">Mediated Reality</span>
+      </div>
+
+      <h1>ChronoPilot</h1>
+
+      <p class="project-intro"><a href="https://www.chronopilot.eu/" target="_blank" rel="noopener">ChronoPilot</a> is an international research project funded by the EU Horizon program. The overarching goal is to harness the plasticity of human time perception to enhance performance, decision-making, and well-being.</p>
+
+      <p class="project-intro">I entered this project mid-way as a post-doc researcher, mainly focusing on making VR/AR prototypes for testing time perception modulation. One of my major contributions is XR MUSE, a Unity framework co-developed with my colleague for networked multi-user collaboration in a mixed-reality shared space. Upon finishing the development, we open-sourced the code as Unity packages to facilitate other researchers' experiment setup. See our publication (<a href="https://www.mdpi.com/2813-2084/3/4/22" target="_blank">XR MUSE: An Open-Source Unity Framework for Extended Reality-Based Networked Multi-User Studies</a>) for more details about this framework.</p></p>
+
+      <figure style="margin: 2rem 0;" class="zoomable" onclick="openLightbox(this)">
+        <img class="full-img" src="/public/imgs/xr-muse-thumb.png" style="margin: 0;" />
+        <figcaption class="media-caption">An illustration of the XR MUSE framework use case.</figcaption>
+      </figure>
+
+      <p class="project-intro">Another research topic we have worked on was the impact of gravity on time perception. To simulate different gravitational contexts, we developed a minimal virtual environment for VR, as depicted in the picture below. Experiment participants were instructed to carry out some basic tasks in this environment under the influence of different virtual gravity setups. The results were published in several academic venues related to time perception.</p>
+
+      <figure style="margin: 2rem 0;" class="zoomable" onclick="openLightbox(this)">
+        <img class="full-img" src="/public/imgs/space-env.png" style="margin: 0;" />
+        <figcaption class="media-caption">The virtual environment used in the gravity simulation and time perception research.</figcaption>
+      </figure>
+    </div>
+  </main>
+
+  <footer>
+    <span class="footer-copy">© 2026 Ningyuan Sun.</span>
+    <a href="/index.html" style="font-size: 0.82rem; color: var(--ink-faint); text-decoration: none;">← Back to Home</a>
+  </footer>
+
+  <script>
+    function openLightbox(item) {
+      const img = item.querySelector('img');
+      const caption = item.querySelector('figcaption');  // ← was .masonry-caption
+      document.getElementById('lightbox-img').src = img.src;
+      document.getElementById('lightbox-img').alt = img.alt;
+      document.getElementById('lightbox-caption').textContent = caption ? caption.textContent : '';
+      document.getElementById('lightbox').classList.add('open');
+      document.body.style.overflow = 'hidden';
+    }
+
+    function closeLightbox() {
+      document.getElementById('lightbox').classList.remove('open');
+      document.body.style.overflow = '';
+    }
+
+    document.addEventListener('keydown', e => { if (e.key === 'Escape') closeLightbox(); });
+  </script>
+
+</body>
+</html>

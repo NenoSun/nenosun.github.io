@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Ningyuan Sun</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&family=DM+Sans:ital,opsz,wght@0,9..40,300;0,9..40,400;0,9..40,500;1,9..40,300&display=swap" rel="stylesheet" />
+  <link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&family=DM+Sans:ital,opsz,wght@0,9..40,300;0,9..40,400;0,9..40,500;1,9..40,300&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="/style.css" />
+</head>
+<body>
+
+  <nav>
+    <a href="/index.html" class="nav-name">Ningyuan Sun</a>
+    <a href="/index.html" class="nav-back">← Back to Home</a>
+  </nav>
+
+  <main>
+    <div class="container fade-in">
+
+      <a href="/index.html#projects" class="back-link">← Back to Projects</a>
+
+      <div class="project-tags">
+        <span class="tag">Mixed Reality</span>
+        <span class="tag">Multi-User Collaboration</span>
+      </div>
+
+      <h1>XR MUSE</h1>
+
+      <p class="project-intro">XR MUSE is a framework we used for carring out timing-related studies under the ChronoPilot project. After developing it, we decided to open source it to faciliate other researchers' experiments.Please check out publication (<a href="https://www.mdpi.com/2813-2084/3/4/22" target="_blank">XR MUSE: An Open-Source Unity Framework for Extended Reality-Based Networked Multi-User Studies</a>) for more details about this framework.</p>
+
+
+    </div>
+  </main>
+
+  <footer>
+    <span class="footer-copy">© 2026 Ningyuan Sun.</span>
+    <a href="/index.html" style="font-size: 0.82rem; color: var(--ink-faint); text-decoration: none;">← Back to Home</a>
+  </footer>
+
+  <script>
+    /**
+     * Renders a click-to-play YouTube embed into a target element.
+     * @param {string} id        - id of the placeholder <div>
+     * @param {string} youtubeId - YouTube video ID (the part after ?v=)
+     * @param {string} caption   - Caption shown below the video
+     */
+    function youtubeEmbed(id, youtubeId, caption) {
+      const el = document.getElementById(id);
+      if (!el) return;
+      el.className = 'video-section';
+
+      const facade = document.createElement('div');
+      facade.className = 'video-facade';
+
+      const thumb = document.createElement('img');
+      thumb.src = `https://img.youtube.com/vi/${youtubeId}/maxresdefault.jpg`;
+      thumb.alt = caption;
+
+      const playBtn = document.createElement('div');
+      playBtn.className = 'play-btn';
+      playBtn.innerHTML = `
+        <svg viewBox="0 0 68 68" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <circle cx="34" cy="34" r="34" fill="rgba(0,0,0,0.55)"/>
+          <polygon points="27,20 54,34 27,48" fill="#fff"/>
+        </svg>`;
+
+      const captionEl = document.createElement('p');
+      captionEl.className = 'media-caption';
+      captionEl.textContent = caption;
+
+      facade.appendChild(thumb);
+      facade.appendChild(playBtn);
+      facade.addEventListener('click', function () {
+        const embed = document.createElement('div');
+        embed.className = 'video-embed';
+        embed.innerHTML = `<iframe src="https://www.youtube.com/embed/${youtubeId}?autoplay=1&rel=0&modestbranding=1" allow="autoplay; fullscreen" allowfullscreen></iframe>`;
+        facade.parentNode.replaceChild(embed, facade);
+      });
+
+      el.appendChild(facade);
+      el.appendChild(captionEl);
+    }
+
+    // ── Register videos here — one line per video ──────────────
+    youtubeEmbed('video-thermal',  'ZiqsLSS1kSw', 'An imperfect implementation of thermal imaging blended with real camera feed.');
+    // ───────────────────────────────────────────────────────────
+  </script>
+
+</body>
+</html>

@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>DELICIOS — Ningyuan Sun</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&family=DM+Sans:ital,opsz,wght@0,9..40,300;0,9..40,400;0,9..40,500;1,9..40,300&display=swap" rel="stylesheet" />
+  <link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&family=DM+Sans:ital,opsz,wght@0,9..40,300;0,9..40,400;0,9..40,500;1,9..40,300&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="/style.css" />
+</head>
+<body>
+
+  <nav>
+    <a href="/index.html" class="nav-name">Ningyuan Sun</a>
+    <a href="/index.html" class="nav-back">← Back to Home</a>
+  </nav>
+
+  <!-- LIGHTBOX -->
+  <div class="lightbox" id="lightbox" onclick="closeLightbox()">
+    <button class="lightbox-close" onclick="closeLightbox()">✕</button>
+    <img id="lightbox-img" src="" alt="" />
+    <div class="lightbox-caption" id="lightbox-caption"></div>
+  </div>
+
+  <main>
+    <div class="container fade-in">
+
+      <a href="/index.html#projects" class="back-link">← Back to Projects</a>
+
+      <div class="project-tags">
+        <span class="tag">Agentic AI</span>
+        <span class="tag">Mediated Reality</span>
+      </div>
+
+      <h1>DELICIOS</h1>
+
+      <p class="project-intro"><a href="https://dl.acm.org/doi/10.1145/2786784.2786796" target="_blank" rel="noopener">Delegation of Decision-Making to Autonomous Agents in Socio-Technical Systems</a> (DELICIOS) is a European research project carried out between 2019 and 2023 by Ghent University, Vrije Universiteit Brussel, and the University of Luxembourg.</p>
+
+      <!-- Full-width intro image — natural aspect ratio, respects page width -->
+      <img class="full-img" style="width: 90%; margin-left: auto; margin-right: auto; clip-path: inset(1.3% 0.1% 1.1% 0.1%);" src="/public/imgs/delicios-thumb.png" alt="DELICIOS project overview" />
+
+      <p class="project-intro">My role in this project was to investigate whether and how mediated-reality technologies (e.g., VR/AR) influence users' delegatory behaviors toward agentic AI. A series of human-computer interaction experiments was carried out to explore different design choices of agentic AI (e.g., how should the agent look like in its appearance, or should the agent proactively build rapport with users?). Based on the experiment results, we proposed a theoretical framework modelling the delegatory relationship between human users and agentic AI, and from there, a few design guidelines were derived for LLM agents nowadays.</p>
+
+      <p class="project-intro">Containing the research of four years within this brief webpage is quite challenging and can also be tedious. I would recommend interested readers to check <a href="https://hdl.handle.net/10993/58847" target="_blank">my thesis</a> directly, particularly on Chapters 1 and 2 where a more detailed discussion on the research question is given there. But if I had to extract one single message from the thesis I would say:</p> 
+        
+      <blockquote>
+        The design of the user interface for agentic AI nowadays needs careful consideration. As LLMs rapidly enable software with near-human level intelligence and behaviors, the delegation between users and AI is more and more resembling interpersonal delegation, which, as often discussed in the research of economics and management, inherently has various problems and is susceptible to many factors. These problems may also arise in user-AI delegation, and thus, the user interface design should try to mitigate the impact.
+      </blockquote>
+      <!-- ===================== GALLERY ===================== -->
+      <p class="section-label">Gallery</p>
+
+      <div class="masonry" id="gallery">
+
+        <div class="masonry-item" onclick="openLightbox(this)">
+          <img src="/public/imgs/delicios-gallery/rapport.png" alt="Rapport study" />
+          <p class="masonry-caption">A study on behavior synchronization and rapport. On the left is an embodied AI agent, and the white mannequin represents the user's avatar in VR.</p>
+        </div>
+
+        <div class="masonry-item" onclick="openLightbox(this)">
+          <img src="/public/imgs/delicios-gallery/tom.png" alt="Theory of mind study" />
+          <p class="masonry-caption">A study on theory of mind. The picture shows the user's perspective of playing a theory-of-mind game with/against an agent.</p>
+        </div>
+
+        <div class="masonry-item" onclick="openLightbox(this)">
+          <img src="/public/imgs/delicios-gallery/hololens.jpg" alt="HoloLens study" />
+          <p class="masonry-caption">A study exploring the impact of media devices. Me in the picture wearing a HoloLens headset and interacting with a virtual agent.</p>
+        </div>
+
+        <div class="masonry-item" onclick="openLightbox(this)">
+          <img src="/public/imgs/delicios-gallery/robot.jpg" alt="Robot representation study" />
+          <p class="masonry-caption">A virtual robotic representation used in one of the studies. The robot is interacted with through a text menu for the purpose of controlling variables.</p>
+        </div>
+
+      </div>
+
+    </div>
+  </main>
+
+  <footer>
+    <span class="footer-copy">© 2026 Ningyuan Sun.</span>
+    <a href="/index.html" style="font-size: 0.82rem; color: var(--ink-faint); text-decoration: none;">← Back to Home</a>
+  </footer>
+
+  <script>
+    function openLightbox(item) {
+      const img = item.querySelector('img');
+      const caption = item.querySelector('.masonry-caption');
+      document.getElementById('lightbox-img').src = img.src;
+      document.getElementById('lightbox-img').alt = img.alt;
+      document.getElementById('lightbox-caption').textContent = caption ? caption.textContent : '';
+      document.getElementById('lightbox').classList.add('open');
+      document.body.style.overflow = 'hidden';
+    }
+
+    function closeLightbox() {
+      document.getElementById('lightbox').classList.remove('open');
+      document.body.style.overflow = '';
+    }
+
+    document.addEventListener('keydown', e => { if (e.key === 'Escape') closeLightbox(); });
+  </script>
+
+</body>
+</html>

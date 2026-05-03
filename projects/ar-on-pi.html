@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Ningyuan Sun</title>
+  
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&family=DM+Sans:ital,opsz,wght@0,9..40,300;0,9..40,400;0,9..40,500;1,9..40,300&display=swap" rel="stylesheet" />
+  <link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&family=DM+Sans:ital,opsz,wght@0,9..40,300;0,9..40,400;0,9..40,500;1,9..40,300&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="/style.css" />
+  <script type="module" src="https://ajax.googleapis.com/ajax/libs/model-viewer/3.4.0/model-viewer.min.js"></script>
+</head>
+<body>
+
+  <nav>
+    <a href="/index.html" class="nav-name">Ningyuan Sun</a>
+    <a href="/index.html" class="nav-back">← Back to Home</a>
+  </nav>
+
+  <main>
+    <div class="container fade-in">
+
+      <a href="/index.html#projects" class="back-link">← Back to Projects</a>
+
+      <div class="project-tags">
+        <span class="tag">Embedded System</span>
+        <span class="tag">Augmented Reality</span>
+      </div>
+
+      <h1>AR System on Raspberry Pi</h1>
+
+      <p class="project-intro">Developing on an existing XR headset (e.g., Meta Quest) can be quite straightforward, as the manufacturer usually already provides convenient APIs that developers can simply grab and use. The same also goes for software standards like OpenXR. While providing great convenience, these frameworks also limit what can be done with an XR device. The restrictions on AR and MR devices are even harsher, as developers directly accessing camera streams are worrisome. To unlock the full potential of AR/MR capabilities, I built this conceptual prototype below with a Raspberry Pi 5.</p>
+
+      <figure style="margin-top: 2rem; margin-bottom: 2rem; position: relative;">
+        <model-viewer src="/public/rpi-ar.glb" camera-controls camera-orbit="140deg 55deg 30m" auto-rotate environment-image="/public/lebombo_1k.hdr"
+          shadow-intensity="3.4" shadow-softness="0.6"  
+          style="width: 100%; height: 480px; background: #f3f3f3; border-radius: 0.5rem;"></model-viewer>
+            <!-- Overlay text -->
+          <div style="
+            position: absolute;
+            top: 16px;
+            left: 16px;
+            color: white;
+            background: rgba(0,0,0,0.4);
+            padding: 0.5rem 0.75rem;
+            border-radius: 0.4rem;
+            font-size: 0.9rem;
+            z-index: 10;
+            pointer-events: none;
+          ">
+            Drag to rotate. Scroll to zoom.
+          </div>
+        <figcaption class="media-caption">An interactive view of the device.</figcaption>
+      </figure>
+
+      <p class="project-intro">The device consists of basic parts of an AR system, including cameras, IMU, a screen, and a portable power supply with Lithium batteries. Those components are put together using a simple 3D-printed housing plus a few screws and nuts.</p>
+
+      <p class="project-intro">Of course, building a device from the ground up would lose access to some readily available features in commercial XR headsets, such as low glass-to-glass latency camera streams, or hardware synchronization between cameras and IMU. Nevertheless, running on a Linux system, the device provides maximal dev possibilities and allows for flexible customization of camera sensors, 2D/3D rendering pipelines, and image composition.</p>
+
+    </div>
+  </main>
+
+  <footer>
+    <span class="footer-copy">© 2026 Ningyuan Sun.</span>
+    <a href="/index.html" style="font-size: 0.82rem; color: var(--ink-faint); text-decoration: none;">← Back to Home</a>
+  </footer>
+
+  <script>
+    /**
+     * Renders a click-to-play YouTube embed into a target element.
+     * @param {string} id        - id of the placeholder <div>
+     * @param {string} youtubeId - YouTube video ID (the part after ?v=)
+     * @param {string} caption   - Caption shown below the video
+     */
+    function youtubeEmbed(id, youtubeId, caption) {
+      const el = document.getElementById(id);
+      if (!el) return;
+      el.className = 'video-section';
+
+      const facade = document.createElement('div');
+      facade.className = 'video-facade';
+
+      const thumb = document.createElement('img');
+      thumb.src = `https://img.youtube.com/vi/${youtubeId}/maxresdefault.jpg`;
+      thumb.alt = caption;
+
+      const playBtn = document.createElement('div');
+      playBtn.className = 'play-btn';
+      playBtn.innerHTML = `
+        <svg viewBox="0 0 68 68" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <circle cx="34" cy="34" r="34" fill="rgba(0,0,0,0.55)"/>
+          <polygon points="27,20 54,34 27,48" fill="#fff"/>
+        </svg>`;
+
+      const captionEl = document.createElement('p');
+      captionEl.className = 'media-caption';
+      captionEl.textContent = caption;
+
+      facade.appendChild(thumb);
+      facade.appendChild(playBtn);
+      facade.addEventListener('click', function () {
+        const embed = document.createElement('div');
+        embed.className = 'video-embed';
+        embed.innerHTML = `<iframe src="https://www.youtube.com/embed/${youtubeId}?autoplay=1&rel=0&modestbranding=1" allow="autoplay; fullscreen" allowfullscreen></iframe>`;
+        facade.parentNode.replaceChild(embed, facade);
+      });
+
+      el.appendChild(facade);
+      el.appendChild(captionEl);
+    }
+
+    // ── Register videos here — one line per video ──────────────
+
+    // ───────────────────────────────────────────────────────────
+  </script>
+
+</body>
+</html>

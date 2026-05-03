@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Game Engine From Scratch — Ningyuan Sun</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&family=DM+Sans:ital,opsz,wght@0,9..40,300;0,9..40,400;0,9..40,500;1,9..40,300&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="/style.css" />
+  <style>
+    /* Make figures with lightbox show a zoom cursor */
+    figure.zoomable { cursor: zoom-in; }
+  </style>
+</head>
+<body>
+
+  <!-- LIGHTBOX -->
+  <div class="lightbox" id="lightbox" onclick="closeLightbox()">
+    <button class="lightbox-close" onclick="closeLightbox()">✕</button>
+    <img id="lightbox-img" src="" alt="" />
+    <div class="lightbox-caption" id="lightbox-caption"></div>
+  </div>
+
+  <nav>
+    <a href="/index.html" class="nav-name">Ningyuan Sun</a>
+    <a href="/index.html" class="nav-back">← Back to Home</a>
+  </nav>
+
+  <main>
+    <div class="container fade-in">
+
+      <a href="/index.html#projects" class="back-link">← Back to Projects</a>
+
+      <div class="project-tags">
+        <span class="tag">Haptics</span>
+        <span class="tag">Eye Tracking</span>
+        <span class="tag">Virtual Reality</span>
+      </div>
+
+      <h1>Haptics and Eye Tracking</h1>
+
+      <p class="project-intro">The idea of this project is to utilize haptic channels to assist navigational tasks in scenarios where the visual and auditory sensing fall short. Such scenarios are often seen in emergencies, like a building on fire where smoke may have covered most of the sight. In daily lives, this may also happen when there is too much information, such as trying to navigate a big airport with ill-placed signs, or finding a specific product in a huge supermarket.</p>
+
+      <p class="project-intro">The hatpic navigation system (cf. the picture below) is implemented on a <a href="https://www.bhaptics.com/en/tactsuit/" target="_blank">bHaptics X40 TactSuit</a> with 40 vibrotactile motors distributed across its front and back. The vest periodically provides vibrotactile feedback to users, indicating the direction of the target position. </p>
+
+      <figure style="margin: 2rem 0rem 2rem 0rem" class="zoomable" onclick="openLightbox(this)">
+        <img class="full-img" src="/public/imgs/haptic-thumb.png" alt="Game engine editor" style="margin: 0;" />
+        <figcaption class="media-caption">A picture of my colleague using the haptic navigation system.</figcaption>
+      </figure>
+
+      <p class="project-intro">To test the effectiveness of the system, we simulated several scenarios in virtual reality, where users have to navigate through the virtual environment with minimal visual and auditory cues, as depicted in the pictures below.</p>
+
+      <div class="masonry" id="gallery" style="margin-top: 2rem;">
+
+        <div class="masonry-item" onclick="openLightbox(this)">
+          <img src="/public/imgs/floating-orbs.png" alt="Rapport study" />
+          <p class="masonry-caption">Floating Orbs: Find a target sphere out of hundreds of spheres of the same appearance.</p>
+        </div>
+
+        <div class="masonry-item" onclick="openLightbox(this)">
+          <img src="/public/imgs/fog-labyrinth.png" alt="Theory of mind study" />
+          <p class="masonry-caption">Fog Labyrinth: Navigate through a maze under the influence of thick smoke.</p>
+        </div>
+      </div>
+
+      <p class="project-intro">Most of the users who tested the system were able to finish these tasks, regardless of the demographics.  </p>
+
+      <p class="project-intro">Eye-tracking data was also recorded during the user test, which revealed correlations between saccadic behaviors, user states, and navigation performance. For detailed analysis of the eyetracking data, please refer to our publication at the 2026 IEEE VR and 3D User Interface (<a href="https://ieeexplore.ieee.org/document/11489960/" target="_blank">Advanced Haptic Directional Awareness in Virtual Reality</a>). </p>
+
+
+
+    </div>
+
+
+  </main>
+
+  <footer>
+    <span class="footer-copy">© 2026 Ningyuan Sun.</span>
+    <a href="/index.html" style="font-size: 0.82rem; color: var(--ink-faint); text-decoration: none;">← Back to Home</a>
+  </footer>
+
+  <script>
+    function openLightbox(figure) {
+      const img = figure.querySelector('img');
+      const caption = figure.querySelector('figcaption');
+      document.getElementById('lightbox-img').src = img.src;
+      document.getElementById('lightbox-img').alt = img.alt;
+      document.getElementById('lightbox-caption').textContent = caption ? caption.textContent : '';
+      document.getElementById('lightbox').classList.add('open');
+      document.body.style.overflow = 'hidden';
+    }
+
+    function closeLightbox() {
+      document.getElementById('lightbox').classList.remove('open');
+      document.body.style.overflow = '';
+    }
+
+    document.addEventListener('keydown', e => { if (e.key === 'Escape') closeLightbox(); });
+  </script>
+
+</body>
+</html>

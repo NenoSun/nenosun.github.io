@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Panoramic Stitching — Ningyuan Sun</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&family=DM+Sans:ital,opsz,wght@0,9..40,300;0,9..40,400;0,9..40,500;1,9..40,300&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="/style.css" />
+  <style>
+    figure.zoomable { cursor: zoom-in; }
+  </style>
+</head>
+<body>
+
+  <!-- LIGHTBOX -->
+  <div class="lightbox" id="lightbox" onclick="closeLightbox()">
+    <button class="lightbox-close" onclick="closeLightbox()">✕</button>
+    <img id="lightbox-img" src="" alt="" />
+    <div class="lightbox-caption" id="lightbox-caption"></div>
+  </div>
+
+  <nav>
+    <a href="/index.html" class="nav-name">Ningyuan Sun</a>
+    <a href="/index.html" class="nav-back">← Back to Home</a>
+  </nav>
+
+  <main>
+    <div class="container fade-in">
+
+      <a href="/index.html#projects" class="back-link">← Back to Projects</a>
+
+      <div class="project-tags">
+        <span class="tag">Computer Vision</span>
+        <span class="tag">Virtual Reality</span>
+      </div>
+
+      <h1>Panoramic Stitching</h1>
+
+      <p class="project-intro">A project I did to stitch images taken by a mobile phone into a panorama as in the picture below.</p>
+
+      <figure style="margin: 2rem 0;" class="zoomable" onclick="openLightbox(this)">
+        <img class="full-img" src="/public/imgs/paranoma.jpg" alt="Panorama of Fuzhou University" style="margin: 0;" />
+        <figcaption class="media-caption">A panorama of Fuzhou University.</figcaption>
+      </figure>
+
+      <p class="project-intro">The project assumes that the optical center of the camera remains still when taking different pictures. So, a platform (cf. the picture below) was used to secure the phone's position. Any two consecutive shots were guaranteed to have overlapping areas for later post-processing calibration.</p>
+
+      <figure style="margin: 2rem 0;" class="zoomable" onclick="openLightbox(this)">
+        <img class="full-img" src="/public/imgs/phone-platform.jpg" alt="Panorama of Fuzhou University" style="margin: 0; width: 50%; margin: auto;" />
+      </figure>
+
+      <p class="project-intro">The program takes all of the images and tries to detect SIFT feature points in each image. Then the program tries to compare and match those feature points. A pair of images with a good matching result is considered "adjacent", that is, the pictures were taken in consecutive shots.</p>
+
+      <figure style="margin: 2rem 0;" class="zoomable" onclick="openLightbox(this)">
+        <img class="full-img" src="/public/imgs/feature-matching.jpg" alt="Panorama of Fuzhou University" style="margin: 0;" />
+        <figcaption class="media-caption">Matching SIFT feature points between pictures. Each colored line represents a match.</figcaption>
+      </figure>
+
+      <p class="project-intro">For adjacent images, we estimate the angle of the phone rotation based on the matching result, and then project them onto a sphere. By expanding the sphere, we obtain the panorama as in the picture at the top of this webpage.</p>
+
+
+      <figure style="margin: 2rem 0;" class="zoomable" onclick="openLightbox(this)">
+        <img class="full-img" src="/public/imgs/panorama-thumb.png" alt="Panorama of Fuzhou University" style="margin: 0; width: 60%; margin: auto;" />
+        <figcaption class="media-caption" style="text-align: center;">Spherical projection.</figcaption>
+      </figure>
+
+    </div>
+  </main>
+
+  <footer>
+    <span class="footer-copy">© 2026 Ningyuan Sun.</span>
+    <a href="/index.html" style="font-size: 0.82rem; color: var(--ink-faint); text-decoration: none;">← Back to Home</a>
+  </footer>
+
+  <script>
+    function openLightbox(figure) {
+      const img = figure.querySelector('img');
+      const caption = figure.querySelector('figcaption');
+      document.getElementById('lightbox-img').src = img.src;
+      document.getElementById('lightbox-img').alt = img.alt;
+      document.getElementById('lightbox-caption').textContent = caption ? caption.textContent : '';
+      document.getElementById('lightbox').classList.add('open');
+      document.body.style.overflow = 'hidden';
+    }
+
+    function closeLightbox() {
+      document.getElementById('lightbox').classList.remove('open');
+      document.body.style.overflow = '';
+    }
+
+    document.addEventListener('keydown', e => { if (e.key === 'Escape') closeLightbox(); });
+  </script>
+
+</body>
+</html>
