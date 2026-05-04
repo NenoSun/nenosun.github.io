@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Realistic Fluid Simulation — Ningyuan Sun</title>
+  <title>Ningyuan Sun</title>
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&family=DM+Sans:ital,opsz,wght@0,9..40,300;0,9..40,400;0,9..40,500;1,9..40,300&display=swap" rel="stylesheet" />
@@ -29,34 +29,21 @@
       <a href="/index.html#projects" class="back-link">← Back to Projects</a>
 
       <div class="project-tags">
-        <span class="tag">Computer Graphics</span>
-        <span class="tag">Physics Simulation</span>
+        <span class="tag">SLAM</span>
+      	<span class="tag">Computer Vision</span>
       </div>
 
-      <h1>Realistic Fluid Simulation</h1>
+      <h1>VIO and Augmented Reality</h1>
 
-      <p class="project-intro">While I was doing my M.Sc. in Computer Science, I had a great interest in game engines and computer graphics. So I decided to work on something relevant as my graduation project. Eventually, I landed on fluid simulation, which is a fun project but also quite challenging.</p>
+      <p class="project-intro">A prototype VIO device made of a global-shutter stereo camera and a bulky IMU unit. When operating, the device uses the USB interface to feed camera streams and IMU data to a PC, which further processes the data using the OpenVINS framework to estimate the device's pose, as shown in the video below.
 
-      <div id="video-opengl" style="margin-bottom: 1.3rem;"></div>
+      <div id="video-ros2" style="margin-bottom: 1.3rem;"></div>
 
-      <div class="project-intro">
-        <p>Written in C++, the program is essentially a particle system that tries to regulate particles' movements using the Navier-Stokes equation. There are various approaches to achieve it, among which the <a href="https://dl.acm.org/doi/10.1145/2786784.2786796" target="_blank" rel="noopener">Divergence-Free Smoothed Particle Hydrodynamics (DFSPH)</a> is used in this project. Particles are then rendered via a simple OpenGL wrapper, as in the video above.</p>
-      </div>
+      <p class="project-intro">The 6-DoF tracking result is forwarded to Godot engine to drive the motion of the XR camera rig, which essentially constitues an AR experience.</p>
 
-      <div class="project-intro">
-        <p>Using Houdini instead of OpenGL gives a much more realistic rendering by default, as in the picture below.</p>
-      </div>
+      <div id="video-ar-openvins" style="margin-bottom: 1.3rem;"></div>
 
-      <figure class="zoomable" onclick="openLightbox(this)">
-        <img class="full-img" src="/public/imgs/fluid-houdini.jpg" alt="Houdini render" style="margin: 0;" />
-        <figcaption class="media-caption" style="margin-top: 0.1rem;">Rendered in Houdini — much more realistic lighting compared to the OpenGL version.</figcaption>
-      </figure>
-
-      <div class="project-intro" style="margin-top: 2rem;">
-        <p>The fluid can also interact with rigidbody objects.</p>
-      </div>
-
-      <div id="video-rigidbody"></div>
+      <p class"project-intro">Due to the lack of proper hardware timestaping and IMU intrinsic calibration, the positional tracking can only remain stable for a relatively short period of time. One of the standard ways for long-term stable tracking, for example, is to use cameras with external triggers and timestamp the camera frames and IMU data using a micro-controller.
 
     </div>
   </main>
@@ -122,8 +109,8 @@
     document.addEventListener('keydown', e => { if (e.key === 'Escape') closeLightbox(); });
 
     // ── Register videos ────────────────────────────────────────
-    youtubeEmbed('video-opengl',    'UKHK2QYGBkI', 'Fluid simulation with a simple OpenGL renderer.');
-    youtubeEmbed('video-rigidbody', 'azWwhbZol6k',  'Fluid interacts with rigidbody dragons.');
+    youtubeEmbed('video-ros2', 'UKHK2QYGBkI', 'Device in operation. The bottom-left corner shows the camera feeds, and on the right panel is the tracking status.');
+    youtubeEmbed('video-ar-openvins', 'UKHK2QYGBkI', 'AR experience with 6-DoF tracking with the device.')
     // ───────────────────────────────────────────────────────────
   </script>
 
