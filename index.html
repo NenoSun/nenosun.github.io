@@ -831,5 +831,15 @@
     <span class="footer-copy"></span>
   </footer>
 
+  <script>
+  const password = prompt("Enter password:");
+
+  if (password !== "12345678") {
+    document.body.innerHTML = "<h1>Access denied</h1>";
+    throw new Error("Blocked");
+  }
+</script>
+
+
 </body>
 </html>
