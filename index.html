@@ -62,7 +62,7 @@
     }
     .research-entry:hover { transform: translateY(-3px); box-shadow: 0 12px 32px rgba(0,0,0,0.07); }
     .re-body { padding: 1.25rem 1.5rem 1.5rem; }
-    .tag { font-size: 0.7rem; font-weight: 500; letter-spacing: 0.06em; color: var(--accent); background: var(--accent-light); padding: 0.2rem 0.55rem; border-radius: 2rem; }
+    .tag { font-size: 0.7rem; font-weight: 500; letter-spacing: 0.06em; text-transform: uppercase; color: var(--accent); background: var(--accent-light); padding: 0.2rem 0.55rem; border-radius: 2rem; }
     .re-title { font-family: var(--serif); font-size: 1.15rem; line-height: 1.3; margin-bottom: 0.4rem; color: var(--ink); }
     .re-desc { font-size: 0.9rem; color: var(--ink-muted); line-height: 1.65; margin-bottom: 0.75rem; }
     .re-link { font-size: 0.82rem; font-weight: 500; color: var(--accent); text-decoration: none; }
@@ -72,11 +72,14 @@
     .img-strip-wrap { position: relative; }
     .img-strip-nav { display: none; }
     .img-strip-label { display: none; }
-    .img-strip-counter { position: absolute; bottom: 0.6rem; left: 50%; transform: translateX(-50%); font-size: 0.7rem; color: #fff; background: rgba(0,0,0,0.45); padding: 0.15rem 0.55rem; border-radius: 2rem; pointer-events: none; z-index: 2; }
-    .img-strip-buttons { position: absolute; top: 50%; transform: translateY(-50%); width: 100%; display: flex; justify-content: space-between; padding: 0 0.6rem; pointer-events: none; z-index: 2; }
-    .img-strip-btn { width: 30px; height: 30px; border-radius: 50%; border: none; background: rgba(0,0,0,0.4); color: #fff; cursor: pointer; display: flex; align-items: center; justify-content: center; transition: background 0.2s; font-size: 0.8rem; pointer-events: all; }
+    .img-strip-counter { position: absolute; bottom: 10px; left: 50%; transform: translateX(-50%); display: flex; gap: 5px; z-index: 2; pointer-events: none; }
+    .img-strip-dot { width: 7px; height: 7px; border-radius: 50%; background: rgba(0,0,0,0.25); border: 1.5px solid rgba(255,255,255,0.8); transition: background 0.2s; }
+    .img-strip-dot.active { background: #fff; border-color: #fff; }
+    .img-strip-buttons { position: absolute; top: 50%; transform: translateY(-50%); width: 100%; display: flex; justify-content: space-between; padding: 0 0.75rem; pointer-events: none; z-index: 2; }
+    .img-strip-btn { width: 32px; height: 32px; border-radius: 50%; border: none; background: rgba(0,0,0,0.45); color: #fff; cursor: pointer; display: flex; align-items: center; justify-content: center; transition: background 0.2s; pointer-events: all; box-shadow: 0 1px 4px rgba(0,0,0,0.3); }
     .img-strip-btn:hover:not(:disabled) { background: rgba(0,0,0,0.65); }
-    .img-strip-btn:disabled { opacity: 0.2; cursor: default; }
+    .img-strip-btn:disabled { opacity: 0.25; cursor: default; }
+    .img-strip-btn svg { width: 14px; height: 14px; flex-shrink: 0; }
     .img-strip { display: flex; gap: 0; transition: transform 0.35s cubic-bezier(0.4, 0, 0.2, 1); will-change: transform; }
     .img-strip-item { overflow: hidden; background: var(--surface); }
     .img-strip-item img { width: 100%; height: 260px; object-fit: cover; display: block; }
@@ -188,10 +191,10 @@
         <div class="research-entry">
           <div class="img-strip-wrap" data-strip="delicios" >
             <div class="img-strip-buttons">
-              <button class="img-strip-btn" data-dir="-1">&#8592;</button>
-              <button class="img-strip-btn" data-dir="1">&#8594;</button>
+              <button class="img-strip-btn" data-dir="-1"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="15 18 9 12 15 6"/></svg></button>
+              <button class="img-strip-btn" data-dir="1"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="9 18 15 12 9 6"/></svg></button>
             </div>
-            <span class="img-strip-counter"></span>
+            <div class="img-strip-counter"></div>
             <div class="img-strip">
               <div class="img-strip-item" data-index="0">
                 <img src="public/imgs/delicios-gallery/rapport.png" alt="Rapport study" />
@@ -227,10 +230,10 @@
         <div class="research-entry">
           <div class="img-strip-wrap" data-strip="chrono" >
             <div class="img-strip-buttons">
-              <button class="img-strip-btn" data-dir="-1">&#8592;</button>
-              <button class="img-strip-btn" data-dir="1">&#8594;</button>
+              <button class="img-strip-btn" data-dir="-1"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="15 18 9 12 15 6"/></svg></button>
+              <button class="img-strip-btn" data-dir="1"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="9 18 15 12 9 6"/></svg></button>
             </div>
-            <span class="img-strip-counter"></span>
+            <div class="img-strip-counter"></div>
             <div class="img-strip">
               <div class="img-strip-item" data-index="0">
                 <img src="public/imgs/xr-muse-thumb.png" alt="XR MUSE" />
@@ -429,12 +432,22 @@
         item.style.minWidth = '100%';
       });
 
+      function renderDots() {
+        counter.innerHTML = '';
+        if (total <= 1) return;
+        for (let i = 0; i < total; i++) {
+          const dot = document.createElement('div');
+          dot.className = 'img-strip-dot' + (i === page ? ' active' : '');
+          counter.appendChild(dot);
+        }
+      }
+
       function render() {
         const itemWidth = wrap.offsetWidth;
         strip.style.transform = `translateX(-${page * itemWidth}px)`;
-        counter.textContent = total > 1 ? (page + 1) + ' / ' + total : '';
         prevBtn.disabled = page === 0;
         nextBtn.disabled = page >= total - 1;
+        renderDots();
         setTimeout(() => { animating = false; }, 380);
       }
 
