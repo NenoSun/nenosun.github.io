@@ -9,6 +9,33 @@
   <link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&family=DM+Sans:ital,opsz,wght@0,9..40,300;0,9..40,400;0,9..40,500;1,9..40,300&display=swap" rel="stylesheet" />
   <link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&family=DM+Sans:ital,opsz,wght@0,9..40,300;0,9..40,400;0,9..40,500;1,9..40,300&display=swap" rel="stylesheet" />
   <link rel="stylesheet" href="/style.css" />
+
+  <style>
+    .publications {
+  counter-reset: pub-counter;
+  list-style: none;
+  padding-left: 0;
+  margin-top: 1.5rem;
+}
+
+.publication-item {
+  counter-increment: pub-counter;
+  position: relative;
+  padding-left: 2.2rem; /* space for number */
+  margin-bottom: 0.9rem;
+  line-height: 1.5;
+  font-size: 0.95rem;
+}
+
+.publication-item::before {
+  content: "[" counter(pub-counter) "]";
+  position: absolute;
+  left: 0;
+  top: 0;
+  font-weight: 500;
+  color: var(--ink-faint);
+}
+  </style>
 </head>
 <body>
 
@@ -36,17 +63,15 @@
 
       <h1>DELICIOS</h1>
 
-      <p class="project-intro"><a href="https://dl.acm.org/doi/10.1145/2786784.2786796" target="_blank" rel="noopener">Delegation of Decision-Making to Autonomous Agents in Socio-Technical Systems</a> (DELICIOS) is an international research project funded by FWO (grant number G054919N) and FNR (grant number 12635165),  carried out between 2019 and 2023 by Ghent University, Vrije Universiteit Brussel, and the University of Luxembourg.</p>
+      <p class="project-intro"><a href="https://dl.acm.org/doi/10.1145/2786784.2786796" target="_blank" rel="noopener">Delegation of Decision-Making to Autonomous Agents in Socio-Technical Systems</a> (DELICIOS) is an international research project funded by <a href="https://www.fwo.be/en/" target="_blank">Research Foundation Flanders</a> (grant number G054919N) and <a href="https://www.fnr.lu/" target="_blank">Luxembourg National Research Fund</a> (grant number 12635165),  carried out between 2019 and 2023 by Ghent University, Vrije Universiteit Brussel, and the University of Luxembourg.</p>
 
       <!-- Full-width intro image — natural aspect ratio, respects page width -->
       <img class="full-img" style="width: 90%; margin-left: auto; margin-right: auto; clip-path: inset(1.3% 0.1% 1.1% 0.1%);" src="/public/imgs/delicios-thumb.png" alt="DELICIOS project overview" />
 
-      <p class="project-intro">My role in this project was to investigate whether and how mediated-reality technologies (e.g., VR/AR) influence users' delegatory behaviors toward agentic AI. A series of human-computer interaction experiments was carried out to explore different design choices of agentic AI (e.g., how should the agent look like in its appearance, or should the agent proactively build rapport with users?). Based on the experiment results, we proposed a theoretical framework modelling the delegatory relationship between human users and agentic AI, and from there, a few design guidelines were derived for LLM agents nowadays.</p>
+      <p class="project-intro">My role in this project was to investigate whether and how mediated-reality technologies (e.g., VR/AR) and agent designs influence users' delegatory behaviors toward agentic AI. A series of human-computer interaction experiments was carried out to answer this question, based on which a theoretical framework was proposed for modelling the delegatory relationship between human users and agentic AI. For more details, please refer to <a href="https://hdl.handle.net/10993/58847" target="_blank">my thesis</a> or the "Associated Publications" section at the end of this webpage. Below is a quick takeaway:</p>
 
-      <p class="project-intro">Containing the research of four years within this brief webpage is quite challenging and can also be tedious. I would recommend interested readers to check <a href="https://hdl.handle.net/10993/58847" target="_blank">my thesis</a> directly, particularly on Chapters 1 and 2 where a more detailed discussion on the research question is given there. But if I had to extract one single message from the thesis I would say:</p> 
-        
       <blockquote>
-        The design of the user interface for agentic AI nowadays needs careful consideration. As LLMs rapidly enable software with near-human level intelligence and behaviors, the delegation between users and AI is more and more resembling interpersonal delegation, which, as often discussed in the research of economics and management, inherently has various problems and is susceptible to many factors. These problems may also arise in user-AI delegation, and thus, the user interface design should try to mitigate the impact.
+        The literature on economics and management has demonstrated that a delegatory relationship in corporate contexts can be susceptible to various factors and needs systematic regulations to remain efficient. With LLM-driven software agents showing near-human level intelligence and behaviors, these factors may similarly impact user-AI delegation. Thus, the user interface design for modern agentic AI should take those factors into consideration and balances their impacts.
       </blockquote>
       <!-- ===================== GALLERY ===================== -->
       <p class="section-label">Gallery</p>
@@ -74,6 +99,21 @@
         </div>
 
       </div>
+
+    <!-- ===================== ASSOCIATED PUBLICATIONS ===================== -->
+    <p class="section-label" style="margin-top: 2rem;">Associated Publications</p>
+
+    <ol class="publications project-intro">
+
+      <li id="pub-1" class="publication-item">
+        Sun, N., et al. (2023). Delegation of decision-making to autonomous agents in socio-technical systems. Proceedings of the ACM CHI Conference. https://doi.org/10.1145/2786784.2786796
+      </li>
+
+      <li id="pub-2" class="publication-item">
+        Sun, N. (2023). Delegation to agentic AI: The role of mediated reality and interface design (Doctoral dissertation, University of Luxembourg). https://hdl.handle.net/10993/58847
+      </li>
+
+    </ol>
 
     </div>
   </main>
