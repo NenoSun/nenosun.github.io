@@ -136,9 +136,33 @@
     .hero-fade > *:nth-child(2) { animation-delay: 0.15s; }
     .hero-fade > *:nth-child(3) { animation-delay: 0.25s; }
     .hero-fade > *:nth-child(4) { animation-delay: 0.35s; }
+
+    /* PASSWORD GATE */
+    #pw-gate { position: fixed; inset: 0; z-index: 9999; background: var(--bg); display: flex; align-items: center; justify-content: center; }
+    #pw-gate.hidden { display: none; }
+    .pw-box { text-align: center; padding: 3rem 2.5rem; max-width: 380px; width: 100%; }
+    .pw-box h2 { font-family: var(--serif); font-size: 1.8rem; margin-bottom: 0.4rem; letter-spacing: -0.02em; }
+    .pw-box p { font-size: 0.9rem; color: var(--ink-muted); margin-bottom: 2rem; }
+    .pw-input { width: 100%; padding: 0.7rem 1rem; font-size: 1rem; font-family: var(--sans); border: 1px solid var(--border); border-radius: 0.25rem; background: var(--surface); color: var(--ink); outline: none; transition: border-color 0.2s; }
+    .pw-input:focus { border-color: var(--accent); }
+    .pw-input.error { border-color: #c0392b; }
+    .pw-error { font-size: 0.82rem; color: #c0392b; margin-top: 0.5rem; min-height: 1.2em; }
+    .pw-btn { margin-top: 1rem; width: 100%; padding: 0.7rem 1rem; font-size: 0.95rem; font-family: var(--sans); font-weight: 500; background: var(--accent); color: #fff; border: none; border-radius: 0.25rem; cursor: pointer; transition: background 0.2s; }
+    .pw-btn:hover { background: #1f4129; }
   </style>
 </head>
 <body>
+
+  <!-- PASSWORD GATE -->
+  <div id="pw-gate">
+    <div class="pw-box">
+      <h2>Ningyuan Sun</h2>
+      <p>This page is password protected.</p>
+      <input id="pw-input" class="pw-input" type="password" placeholder="Enter password" autocomplete="current-password" />
+      <div id="pw-error" class="pw-error"></div>
+      <button class="pw-btn" onclick="checkPassword()">Enter</button>
+    </div>
+  </div>
 
   <!-- LIGHTBOX -->
   <div class="lightbox" id="lightbox" onclick="closeLightbox()">
@@ -395,6 +419,34 @@
   </footer>
 
   <script>
+    // PASSWORD GATE
+    (function () {
+      if (sessionStorage.getItem('pw_ok') === '1') {
+        document.getElementById('pw-gate').classList.add('hidden');
+      }
+    })();
+    function checkPassword() {
+      const val = document.getElementById('pw-input').value;
+      const input = document.getElementById('pw-input');
+      const err = document.getElementById('pw-error');
+      if (val === '12345678') {
+        sessionStorage.setItem('pw_ok', '1');
+        document.getElementById('pw-gate').classList.add('hidden');
+        input.classList.remove('error');
+        err.textContent = '';
+      } else {
+        input.classList.add('error');
+        err.textContent = 'Incorrect password. Please try again.';
+        input.value = '';
+        input.focus();
+      }
+    }
+    document.addEventListener('keydown', e => {
+      if (e.key === 'Enter' && !document.getElementById('pw-gate').classList.contains('hidden')) {
+        checkPassword();
+      }
+    });
+
     // LIGHTBOX
     function openLightbox(item) {
       const img = item.querySelector('img');
