@@ -7,35 +7,9 @@
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&family=DM+Sans:ital,opsz,wght@0,9..40,300;0,9..40,400;0,9..40,500;1,9..40,300&display=swap" rel="stylesheet" />
-  <link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&family=DM+Sans:ital,opsz,wght@0,9..40,300;0,9..40,400;0,9..40,500;1,9..40,300&display=swap" rel="stylesheet" />
   <link rel="stylesheet" href="/style.css" />
 
-  <style>
-    .publications {
-  counter-reset: pub-counter;
-  list-style: none;
-  padding-left: 0;
-  margin-top: 1.5rem;
-}
 
-.publication-item {
-  counter-increment: pub-counter;
-  position: relative;
-  padding-left: 2.2rem; /* space for number */
-  margin-bottom: 0.9rem;
-  line-height: 1.5;
-  font-size: 0.95rem;
-}
-
-.publication-item::before {
-  content: "[" counter(pub-counter) "]";
-  position: absolute;
-  left: 0;
-  top: 0;
-  font-weight: 500;
-  color: var(--ink-faint);
-}
-  </style>
 </head>
 <body>
 
@@ -71,7 +45,7 @@
       <p class="project-intro">My role in this project was to investigate whether and how mediated-reality technologies (e.g., VR/AR) and agent designs influence users' delegatory behaviors toward agentic AI. A series of human-computer interaction experiments was carried out to answer this question, based on which a theoretical framework was proposed for modelling the delegatory relationship between human users and agentic AI. For more details, please refer to <a href="https://hdl.handle.net/10993/58847" target="_blank">my thesis</a> or the "Associated Publications" section at the end of this webpage. Below is a quick takeaway:</p>
 
       <blockquote>
-        The literature on economics and management has demonstrated that a delegatory relationship in corporate contexts can be susceptible to various factors and needs systematic regulations to remain efficient. With LLM-driven software agents showing near-human level intelligence and behaviors, these factors may similarly impact user-AI delegation. Thus, the user interface design for modern agentic AI should take those factors into consideration and balances their impacts.
+        The literature on economics and management has demonstrated that delegatory relationships in corporate contexts can be susceptible to various factors and needs systematic regulations to remain efficient. With LLM-driven software agents showing near-human level intelligence and behaviors, these factors may similarly impact user-AI delegation. Thus, the user interface design for modern agentic AI should take those factors into consideration and balances their impacts.
       </blockquote>
       <!-- ===================== GALLERY ===================== -->
       <p class="section-label">Gallery</p>
@@ -80,22 +54,22 @@
 
         <div class="masonry-item" onclick="openLightbox(this)">
           <img src="/public/imgs/delicios-gallery/rapport.png" alt="Rapport study" />
-          <p class="masonry-caption">A study on behavior synchronization and rapport. On the left is an embodied AI agent, and the white mannequin represents the user's avatar in VR.</p>
+          <p class="masonry-caption">A study on behavior synchronization and rapport [7]. On the left is an embodied AI agent, and the white mannequin represents the user's avatar in VR.</p>
         </div>
 
         <div class="masonry-item" onclick="openLightbox(this)">
           <img src="/public/imgs/delicios-gallery/tom.png" alt="Theory of mind study" />
-          <p class="masonry-caption">A study on theory of mind. The picture shows the user's perspective of playing a theory-of-mind game with/against an agent.</p>
+          <p class="masonry-caption">A study on theory of mind [5]. The picture shows the user's perspective of playing a theory-of-mind game with/against an agent.</p>
         </div>
 
         <div class="masonry-item" onclick="openLightbox(this)">
           <img src="/public/imgs/delicios-gallery/hololens.jpg" alt="HoloLens study" />
-          <p class="masonry-caption">A study exploring the impact of media devices. Me in the picture wearing a HoloLens headset and interacting with a virtual agent.</p>
+          <p class="masonry-caption">A study exploring the impact of media devices [6]. Me in the picture wearing a HoloLens headset and interacting with a virtual agent.</p>
         </div>
 
         <div class="masonry-item" onclick="openLightbox(this)">
           <img src="/public/imgs/delicios-gallery/robot.jpg" alt="Robot representation study" />
-          <p class="masonry-caption">A virtual robotic representation used in one of the studies. The robot is interacted with through a text menu for the purpose of controlling variables.</p>
+          <p class="masonry-caption">A virtual robotic representation used in one of the studies [6]. The robot is interacted with through a text menu for the purpose of controlling variables.</p>
         </div>
 
       </div>
@@ -103,16 +77,15 @@
     <!-- ===================== ASSOCIATED PUBLICATIONS ===================== -->
     <p class="section-label" style="margin-top: 2rem;">Associated Publications</p>
 
-    <ol class="publications project-intro">
-
-      <li id="pub-1" class="publication-item">
-        Sun, N., et al. (2023). Delegation of decision-making to autonomous agents in socio-technical systems. Proceedings of the ACM CHI Conference. https://doi.org/10.1145/2786784.2786796
-      </li>
-
-      <li id="pub-2" class="publication-item">
-        Sun, N. (2023). Delegation to agentic AI: The role of mediated reality and interface design (Doctoral dissertation, University of Luxembourg). https://hdl.handle.net/10993/58847
-      </li>
-
+    <ol class="project-intro" style="padding-left: 1.5rem; margin-top: 0.5rem;">
+      <li>Sun, N., &amp; Botev, J. (2020). Intelligent adaptive agents and trust in virtual and augmented reality. In <em>Proceedings of the 19th IEEE International Symposium on Mixed and Augmented Reality (ISMAR) Adjunct</em> (pp. 303–305).</li>
+      <li>Sun, N., &amp; Botev, J. (2021). Intelligent autonomous agents and trust in virtual reality. <em>Computers in Human Behavior Reports</em>, <em>4</em>, 100146.</li>
+      <li>Sun, N., &amp; Botev, J. (2021). Virtual agent representation for critical transactions. In <em>Proceedings of the 13th International Workshop on Immersive Mixed and Virtual Environment Systems (MMVE)</em> (pp. 25–29).</li>
+      <li>Sun, N., &amp; Botev, J. (2021). Why do we delegate to intelligent virtual agents? Influencing factors on delegation decisions. In <em>Proceedings of the 9th International Conference on Human-Agent Interaction (HAI)</em> (pp. 386–390).</li>
+      <li>Sun, N., Botev, J., Khaluf, Y., &amp; Simoens, P. (2022). Theory of mind and delegation to robotic virtual agents. In <em>Proceedings of the 31st IEEE International Conference on Robot and Human Interactive Communication (RO-MAN)</em> (pp. 454–460).</li>
+      <li>Sun, N., &amp; Botev, J. (2023). Technological immersion and delegation to virtual agents. <em>Multimodal Technologies and Interaction</em>, <em>7</em>(11), 106.</li>
+      <li>Sun, N., Botev, J., &amp; Simoens, P. (2023). The effect of rapport on delegation to virtual agents. In <em>Proceedings of the 23rd International Conference on Intelligent Virtual Agents (IVA)</em>.</li>
+      <li>Sun, N., &amp; Botev, J. (2024). Digital partnerships: Understanding delegation and interaction with virtual agents. In Y. Chen &amp; E. Blasch (Eds.), <em>Navigating the metaverse: A comprehensive guide to the future of digital interaction</em>. IntechOpen.</li>
     </ol>
 
     </div>
