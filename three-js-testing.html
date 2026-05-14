@@ -1,23 +1,235 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Three.js Testing</title>
-    <style>
-        * { margin: 0; padding: 0; }
-        body { overflow: hidden; }
-    </style>
-    <script type="importmap">
-    {
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Ningyuan Sun</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&family=DM+Sans:ital,opsz,wght@0,9..40,300;0,9..40,400;0,9..40,500;1,9..40,300&display=swap" rel="stylesheet" />
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    :root {
+      --serif: 'DM Serif Display', Georgia, serif;
+      --sans: 'DM Sans', system-ui, sans-serif;
+      --accent: #2d5a3d;
+      --accent-dark: #245032;
+    }
+    html, body { width: 100%; height: 100%; overflow: hidden; }
+    body { background: #080a08; font-family: var(--sans); -webkit-font-smoothing: antialiased; }
+    canvas { display: block; position: fixed; inset: 0; }
+
+    /* ── LOADING SCREEN ── */
+    #loading-screen {
+      position: fixed; inset: 0; z-index: 200;
+      background: #080a08;
+      display: flex; flex-direction: column;
+      align-items: center; justify-content: center; gap: 1.75rem;
+      transition: opacity 0.7s ease;
+    }
+    .loading-name {
+      font-family: var(--serif);
+      font-size: clamp(2rem, 5vw, 3rem);
+      color: #eeeee8;
+      letter-spacing: -0.02em;
+      opacity: 0;
+      animation: fadeUp 0.8s 0.1s ease both;
+    }
+    .loading-sub {
+      font-size: 0.78rem; font-weight: 400; letter-spacing: 0.12em;
+      text-transform: uppercase; color: rgba(238,238,232,0.35);
+      opacity: 0;
+      animation: fadeUp 0.8s 0.25s ease both;
+    }
+    .loading-bar-track {
+      width: 140px; height: 1.5px;
+      background: rgba(255,255,255,0.1);
+      border-radius: 2px; overflow: hidden;
+      opacity: 0;
+      animation: fadeUp 0.8s 0.35s ease both;
+    }
+    #loading-bar {
+      height: 100%; width: 0%;
+      background: var(--accent);
+      border-radius: 2px;
+      transition: width 0.35s ease;
+    }
+
+    /* ── OVERLAY ── */
+    #overlay { position: fixed; inset: 0; z-index: 10; pointer-events: none; }
+
+    /* bottom gradient for text legibility */
+    #overlay::after {
+      content: '';
+      position: absolute; bottom: 0; left: 0; right: 0; height: 60%;
+      background: linear-gradient(to top, rgba(5,8,5,0.85) 0%, rgba(5,8,5,0.35) 55%, transparent 100%);
+    }
+
+    /* top gradient for nav legibility */
+    #overlay::before {
+      content: '';
+      position: absolute; top: 0; left: 0; right: 0; height: 160px;
+      background: linear-gradient(to bottom, rgba(5,8,5,0.6) 0%, transparent 100%);
+    }
+
+    /* ── NAV ── */
+    #top-nav {
+      position: absolute; top: 0; left: 0; right: 0;
+      display: flex; align-items: center; justify-content: space-between;
+      padding: 1.6rem clamp(1.5rem, 5vw, 3.5rem);
+      pointer-events: all; z-index: 1;
+    }
+    .nav-brand {
+      font-family: var(--serif);
+      font-size: 1.05rem; letter-spacing: -0.01em;
+      color: rgba(238,238,232,0.88);
+      text-decoration: none;
+      transition: color 0.2s;
+    }
+    .nav-brand:hover { color: #eeeee8; }
+    .nav-links-top { display: flex; gap: 2rem; list-style: none; }
+    .nav-links-top a {
+      font-size: 0.8rem; font-weight: 400;
+      letter-spacing: 0.06em; text-transform: uppercase;
+      color: rgba(238,238,232,0.5);
+      text-decoration: none; transition: color 0.2s;
+    }
+    .nav-links-top a:hover { color: rgba(238,238,232,0.95); }
+
+    /* ── HERO TEXT ── */
+    #hero-ui {
+      position: absolute; bottom: 0; left: 0; right: 0;
+      padding: 0 clamp(1.5rem, 5vw, 3.5rem) clamp(2.5rem, 6vw, 4.5rem);
+      z-index: 1; pointer-events: none;
+      opacity: 0; transform: translateY(14px);
+      transition: opacity 0.9s ease 0.15s, transform 0.9s ease 0.15s;
+    }
+    .hero-badge {
+      display: inline-flex; align-items: center;
+      font-size: 0.75rem; font-weight: 500;
+      letter-spacing: 0.08em; text-transform: uppercase;
+      color: rgba(200,224,208,0.9);
+      background: rgba(45,90,61,0.38);
+      border: 1px solid rgba(45,90,61,0.55);
+      backdrop-filter: blur(8px);
+      -webkit-backdrop-filter: blur(8px);
+      padding: 0.28rem 0.8rem; border-radius: 2rem;
+      margin-bottom: 1rem;
+    }
+    .hero-name {
+      font-family: var(--serif);
+      font-size: clamp(2.6rem, 6vw, 4.2rem);
+      color: #eeeee8; line-height: 1.08;
+      letter-spacing: -0.025em;
+      margin-bottom: 0.75rem;
+    }
+    .hero-desc {
+      font-size: clamp(0.88rem, 1.4vw, 1rem);
+      color: rgba(238,238,232,0.55);
+      max-width: 420px; line-height: 1.7;
+      margin-bottom: 1.9rem;
+    }
+    .hero-actions { display: flex; gap: 0.85rem; flex-wrap: wrap; pointer-events: all; }
+    .btn {
+      display: inline-flex; align-items: center; gap: 0.4rem;
+      padding: 0.62rem 1.35rem;
+      border-radius: 0.25rem; font-size: 0.88rem; font-weight: 500;
+      text-decoration: none; cursor: pointer; border: none;
+      transition: background 0.18s, border-color 0.18s, transform 0.16s, box-shadow 0.16s;
+    }
+    .btn:hover { transform: translateY(-1px); box-shadow: 0 6px 18px rgba(0,0,0,0.35); }
+    .btn:active { transform: translateY(0); box-shadow: none; }
+    .btn-primary { background: var(--accent); color: #fff; }
+    .btn-primary:hover { background: var(--accent-dark); }
+    .btn-ghost {
+      background: rgba(238,238,232,0.08);
+      backdrop-filter: blur(8px); -webkit-backdrop-filter: blur(8px);
+      border: 1px solid rgba(238,238,232,0.18);
+      color: rgba(238,238,232,0.8);
+    }
+    .btn-ghost:hover { background: rgba(238,238,232,0.14); border-color: rgba(238,238,232,0.32); }
+
+    /* ── ORBIT HINT ── */
+    #orbit-hint {
+      position: absolute;
+      bottom: clamp(2.5rem, 6vw, 4.5rem);
+      right: clamp(1.5rem, 5vw, 3.5rem);
+      font-size: 0.7rem; letter-spacing: 0.06em; text-transform: uppercase;
+      color: rgba(238,238,232,0.28);
+      display: flex; align-items: center; gap: 0.45rem;
+      pointer-events: none; z-index: 1;
+      transition: opacity 0.5s ease;
+    }
+    #orbit-hint svg { width: 13px; height: 13px; flex-shrink: 0; }
+
+    /* ── ANIMATIONS ── */
+    @keyframes fadeUp {
+      from { opacity: 0; transform: translateY(14px); }
+      to   { opacity: 1; transform: translateY(0); }
+    }
+
+    /* ── RESPONSIVE ── */
+    @media (max-width: 560px) { .nav-links-top { display: none; } }
+    @media (max-width: 400px) { .hero-actions { flex-direction: column; } .btn { justify-content: center; } }
+  </style>
+  <script type="importmap">
+  {
     "imports": {
-        "three": "https://cdn.jsdelivr.net/npm/three@0.184.0/build/three.module.js",
-        "three/addons/": "https://cdn.jsdelivr.net/npm/three@0.184.0/examples/jsm/"
+      "three": "https://cdn.jsdelivr.net/npm/three@0.184.0/build/three.module.js",
+      "three/addons/": "https://cdn.jsdelivr.net/npm/three@0.184.0/examples/jsm/"
     }
-    }
-    </script>
+  }
+  </script>
 </head>
 <body>
-    <script type="module" src="/public/main.js"></script>
+
+  <!-- LOADING SCREEN -->
+  <div id="loading-screen">
+    <div class="loading-name">Ningyuan Sun</div>
+    <div class="loading-sub">Loading</div>
+    <div class="loading-bar-track"><div id="loading-bar"></div></div>
+  </div>
+
+  <!-- OVERLAY UI -->
+  <div id="overlay">
+    <nav id="top-nav">
+      <a href="index.html" class="nav-brand">Ningyuan Sun</a>
+      <ul class="nav-links-top">
+        <li><a href="index.html#about">About</a></li>
+        <li><a href="index.html#research-projects">Research</a></li>
+        <li><a href="index.html#engineer-projects">Engineering</a></li>
+        <li><a href="index.html#publications">Publications</a></li>
+        <li><a href="index.html#contact">Contact</a></li>
+      </ul>
+    </nav>
+
+    <div id="hero-ui">
+      <div class="hero-badge">Ph.D. &middot; Virtual &amp; Augmented Reality</div>
+      <h1 class="hero-name">Ningyuan Sun</h1>
+      <p class="hero-desc">Ten years of research and engineering in XR, intelligent wearables, and human–AI interaction.</p>
+      <div class="hero-actions">
+        <a href="index.html#research-projects" class="btn btn-primary">Explore My Work</a>
+        <a href="index.html#about" class="btn btn-ghost">About Me</a>
+      </div>
+    </div>
+
+    <div id="orbit-hint">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+        <path d="M3 12a9 9 0 1 0 18 0 9 9 0 0 0-18 0"/>
+        <path d="m15 12-3-3m0 0-3 3m3-3v6"/>
+      </svg>
+      Drag to rotate
+    </div>
+  </div>
+
+  <script type="module" src="/public/main.js"></script>
+
+  <script>
+    document.addEventListener('pointerdown', () => {
+      const hint = document.getElementById('orbit-hint');
+      if (hint) hint.style.opacity = '0';
+    }, { once: true });
+  </script>
+
 </body>
 </html>
