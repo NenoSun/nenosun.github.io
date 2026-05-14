@@ -168,6 +168,26 @@
       to   { opacity: 1; transform: translateY(0); }
     }
 
+    /* ── KEYWORDS ── */
+    #keywords {
+      position: absolute;
+      top: clamp(5rem, 12vw, 8rem);
+      left: 50%; transform: translateX(-50%);
+      text-align: center;
+      pointer-events: none; z-index: 1;
+      opacity: 0;
+      transition: opacity 1s ease;
+      white-space: nowrap;
+    }
+    #keywords.visible { opacity: 1; }
+    #keywords h2 {
+      font-family: var(--sans);
+      font-size: clamp(1.4rem, 3vw, 2.2rem);
+      font-weight: 300;
+      letter-spacing: 0.04em;
+      color: rgba(238,238,232,0.88);
+    }
+
     /* ── RESPONSIVE ── */
     @media (max-width: 560px) { .nav-links-top { display: none; } }
     @media (max-width: 400px) { .hero-actions { flex-direction: column; } .btn { justify-content: center; } }
@@ -193,6 +213,10 @@
   <!-- OVERLAY UI -->
   <div id="overlay">
 
+    <div id="keywords">
+      <h2>Elegant, Supreme, Future</h2>
+    </div>
+
     <div id="hero-ui">
       <!-- <div class="hero-badge">Ph.D. &middot; Virtual &amp; Augmented Reality</div> -->
       <h1 class="hero-name">Porsche 911</h1>
@@ -215,6 +239,16 @@
   <script type="module" src="/public/main.js"></script>
 
   <script>
+    // Fade in keywords alongside hero text after load
+    const kwObserver = new MutationObserver(() => {
+      const ui = document.getElementById('hero-ui');
+      if (ui && ui.style.opacity === '1') {
+        document.getElementById('keywords').classList.add('visible');
+        kwObserver.disconnect();
+      }
+    });
+    kwObserver.observe(document.getElementById('hero-ui'), { attributes: true, attributeFilter: ['style'] });
+
     document.addEventListener('pointerdown', () => {
       const hint = document.getElementById('orbit-hint');
       if (hint) hint.style.opacity = '0';
