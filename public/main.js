@@ -22,10 +22,12 @@ loader.load(
             child.castShadow = true;
             child.receiveShadow = true;
         });
-        mesh.position.x = 2;
-        mesh.position.y = 0.1;
-        ;
+        const box = new THREE.Box3().setFromObject(mesh);
+        const center = box.getCenter(new THREE.Vector3());
+        mesh.position.sub(center);
         scene.add(mesh);
+        controls.target.set(0, 0, 0);
+        controls.update();
      },
     undefined,
     (error) => { console.error(error); }
@@ -38,7 +40,7 @@ renderer.shadowMap.enabled = true;
 renderer.shadowMap.type = THREE.PCFSoftShadowMap;
 
 const camera = new THREE.PerspectiveCamera( 75, window.innerWidth / window.innerHeight, 0.01, 100 );
-camera.position.z = 3;
+camera.position.z = 4;
 const controls = new OrbitControls(camera, renderer.domElement);
 
 
