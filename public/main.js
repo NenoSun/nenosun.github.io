@@ -1,7 +1,7 @@
 import * as THREE from 'three';
 import { GLTFLoader } from 'three/addons/loaders/GLTFLoader.js';
 import { OrbitControls } from 'three/addons/controls/OrbitControls.js';
-import { RGBELoader } from 'three/addons/loaders/RGBELoader.js';
+import { HDRLoader } from 'three/addons/loaders/HDRLoader.js';
 
 // ── LOADING MANAGER ──────────────────────────────────────────────────────────
 const manager = new THREE.LoadingManager();
@@ -93,7 +93,7 @@ loader.load(
 );
 
 // ── HDR ENVIRONMENT ──────────────────────────────────────────────────────────
-const hdrLoader = new RGBELoader(manager);
+const hdrLoader = new HDRLoader(manager);
 hdrLoader.load('/public/monochrome_studio_02_4k.hdr', (hdr) => {
     hdr.mapping = THREE.EquirectangularReflectionMapping;
     scene.environment = hdr;
